@@ -25,7 +25,11 @@ const config: Configuration = {
       },
       {
         test: /\.(gif|png|jpe?g|svg|xml)$/i,
-        use: 'file-loader'
+        loader: 'file-loader',
+        options: {
+          name: '[name]_[hash:12].[ext]',
+          outputPath: 'assets/imgs'
+        }
       }
     ]
   },
