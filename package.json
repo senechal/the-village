@@ -2,6 +2,7 @@
   "name": "the-village",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://senechal.github.io/the-village",
   "main": "index.jsx",
   "scripts": {
     "build": "webpack",
