@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
-import tiles from './assets/tiles.png'
+import { assetsPath, maps } from './assets'
+import join from 'url-join'
 
 export class Game extends Phaser.Scene {
   constructor() {
@@ -7,17 +8,17 @@ export class Game extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image('tiles', tiles)
-    this.load.tilemapTiledJSON('map', '/assets/tileMaps/map.json')
+    this.load.image('tiles', join(assetsPath, maps.poc.tiles))
+    this.load.tilemapTiledJSON('map', join(assetsPath, maps.poc.tileMap))
   }
 
   create(): void {
-    const map = this.make.tilemap({
-      key: 'map',
+    const poc = this.make.tilemap({
+      key: maps.poc.name,
       tileWidth: 64,
       tileHeight: 32
     })
-    const tileset = map.addTilesetImage('map', 'tiles')
-    map.createLayer('field', tileset, window.innerWidth / 2 - 32, 0)
+    const tileset = poc.addTilesetImage('map', 'tiles')
+    poc.createLayer(maps.poc.layers[0], tileset, window.innerWidth / 2 - 32, 0)
   }
 }

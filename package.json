@@ -19,7 +19,8 @@
     "phaser": "^3.70.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.0",
+    "url-join": "^5.0.0"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^10.1.0",
