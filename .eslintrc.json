@@ -21,7 +21,9 @@
       "extends": ["standard-with-typescript", "plugin:react/recommended"],
       "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/jsx-uses-react": "off"
+        "react/jsx-uses-react": "off",
+        "space-before-function-paren": "off",
+        "@typescript-eslint/space-before-function-paren": "off"
       },
       "parserOptions": {
         "project": "tsconfig.json"

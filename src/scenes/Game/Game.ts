@@ -2,12 +2,12 @@ import Phaser from 'phaser'
 import logoImg from './assets/logo.png'
 
 export class Game extends Phaser.Scene {
-  preload (): void {
+  preload(): void {
     this.load.image('logo', logoImg)
-    this.load.image('background', 'assets/bg.jpg')
+    this.load.image('background', 'assets/imgs/bg.jpg')
   }
 
-  create (): void {
+  create(): void {
     this.add.image(400, 300, 'background')
     const logo = this.add.image(400, 150, 'logo')
 
