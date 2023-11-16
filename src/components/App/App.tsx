@@ -1,7 +1,7 @@
 import '../../PhaserGame'
 
 export const App: React.FC = () => (
-  <main>
+  <main className="gameContainer">
     <div id="phaser-container"></div>
   </main>
 )

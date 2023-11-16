@@ -1,12 +1,10 @@
-export const assetsPath = 'assets/game'
+import poc from '../../game-assets/maps/poc'
+import knight from '../../game-assets/sprites/knight'
 
 export const maps = {
-  poc: {
-    tiles: 'maps/poc/tiles.png',
-    tileMap: 'maps/poc/map.json',
-    name: 'map',
-    layers: ['field']
-  }
+  poc
 }
 
-export const characters = {}
+export const sprites = {
+  knight
+}
