@@ -120,5 +120,6 @@ export class Game extends Phaser.Scene {
       .setAltFillStyle()
       .setOutlineStyle(0x000000)
       .setOrigin(0, 0)
+
   }
 }
