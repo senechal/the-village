@@ -47,7 +47,17 @@ const config: Configuration = {
       WEBGL_RENDERER: JSON.stringify(true)
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'public' }]
+      patterns: [
+        { from: 'public' },
+        {
+          from: '*/**/(map|config).json',
+          context: path.resolve(__dirname, 'src', 'game-assets'),
+          to: 'assets',
+          globOptions: {
+            gitignore: true
+          }
+        }
+      ]
     })
   ]
 }

@@ -23,7 +23,9 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
         "space-before-function-paren": "off",
-        "@typescript-eslint/space-before-function-paren": "off"
+        "@typescript-eslint/space-before-function-paren": "off",
+        "@typescript-eslint/prefer-nullish-coalescing": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off"
       },
       "parserOptions": {
         "project": "tsconfig.json"
