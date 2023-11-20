@@ -1,35 +1,25 @@
 declare module '*.png'
 
-interface Window {
-  fx: any
+declare namespace Phaser {
+  interface Scene {
+    gridEngine: IGridEngine
+  }
 }
 
-interface MapAsset {
-  config: {
-    playerCharacter: {
-      initPos: {
-        x: number
-        y: number
-      }
+interface MapConfig {
+  playerCharacter: {
+    initPos: {
+      x: number
+      y: number
     }
   }
-  tileset: string
 }
 
-interface SpriteAsset {
-  config: Record<string, unknown>
-  sprite: {
-    directions: Record<string, { offset: numbe, size: number }>
-    animations: [
-      {
-        name: string
-        startFrame: number
-        endframe: number
-        speed: number
-      }
-    ]
-  }
-  spritesheet: string
+interface CharConfig {
+  origin: [number, number]
+  offset: [number, number]
+  speed: number
+  random: boolean | number
 }
 
 interface GameAssets {
@@ -45,11 +35,7 @@ interface AnimRecord {
 
 type Anim = Record<string, AnimRecord>
 
-interface DirectionRecord {
-  offset: number
-  x: number
-  y: number
-  opposite: string
+interface Directions {
+  charId: string
+  direction: string
 }
-
-type Direction = Record<string, DirectionRecord>
