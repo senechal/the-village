@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bitecs": "^0.3.40",
+    "grid-engine": "https://github.com/senechal/grid-engine",
     "phaser": "^3.70.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

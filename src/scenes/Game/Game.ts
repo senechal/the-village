@@ -1,125 +1,120 @@
 import Phaser from 'phaser'
-import { Player } from '../../characters/Player'
-import { maps, sprites } from './assets'
+import { type GridEngineConfig } from 'grid-engine'
+import { createAnims } from '../../anims'
+import { Monster } from '../../entities/Monster'
+import { Player } from '../../entities/Player'
+import { type Character } from '../../entities/Character'
+import { toIso, toOrth } from '../../utils/transforms'
 
 export class Game extends Phaser.Scene {
-  assets: GameAssets
-  player: any
-  gridSize: number
-  currentMap: MapAsset
-  controls: Phaser.Cameras.Controls.SmoothedKeyControl
+  private player: Character
+  private groundLayer!: Phaser.Tilemaps.TilemapLayer
+  private currentMap: string
+  private pin: Phaser.GameObjects.Ellipse
+  private targetPos: string
 
   constructor() {
-    super('SceneMain')
-
-    this.gridSize = 32
-
-    this.assets = {
-      maps: {},
-      sprites: {}
-    }
-  }
-
-  preload(): void {
-    this.loadAssets()
-  }
-
-  sqrToIso(x: number, y: number): [number, number] {
-    const tX = x * this.gridSize
-    const tY = y * this.gridSize
-    return [tX - tY, (tY + tX) / 2]
-  }
-
-  isoToSqr(x: number, y: number): [number, number] {
-    return [(2 * y + x) / 2, (2 * y - x) / 2]
+    super('game')
   }
 
   create(): void {
-    this.renderMap('poc', 'grass', 'field')
-    this.addPlayer('knight')
+    createAnims(this.anims, 'adventurer')
+    createAnims(this.anims, 'skeleton')
+
+    const monsters = this.physics.add.group({
+      classType: Monster
+    })
+
+    const gridEngineConfig: GridEngineConfig = {
+      characters: []
+    }
+
+    const village = this.renderMap('village', 'grass', ['field'], 'field')
+
+    this.gridEngine.create(village, gridEngineConfig)
+
+    monsters.get(1, 0, 'skeleton')
+    this.player = new Player(this, 5, 5, 'adventurer')
+
     this.initCamera()
+    this.initMouseEvents()
   }
 
   update(time: number, delta: number): void {
-    this.player.update()
-    this.controls.update(delta)
-  }
+    const isMoving = this.gridEngine.isMoving(this.player.getId())
 
-  loadAssets(): void {
-    for (const [key, value] of Object.entries(maps)) {
-      this.assets.maps[key] = value
-      this.load.image(`${key}-tiles`, value.tileset)
-      this.load.tilemapTiledJSON(key, `/assets/maps/${key}/map.json`)
-    }
+    const [xx, yy] = toOrth(this.player.x / 32, this.player.y / 32)
 
-    for (const [key, value] of Object.entries(sprites)) {
-      this.assets.sprites[key] = value
-      this.load.spritesheet('knight', value.spritesheet, {
-        frameWidth: 256,
-        frameHeight: 256
-      })
+    const same = `${xx - 1.5},${yy - 0.5}` === this.targetPos
+    if (this.pin && !isMoving && same) {
+      this.pin.destroy()
+      this.pin = null
+      this.targetPos = null
     }
   }
 
-  renderMap(map: string, tileset: string, layer: string): void {
-    this.currentMap = this.assets.maps[map]
+  renderMap(
+    map: string,
+    tileset: string,
+    layers: string[],
+    ground: string
+  ): Phaser.Tilemaps.Tilemap {
+    this.currentMap = map
     const tilemap = this.make.tilemap({
-      key: map,
-      tileWidth: 64,
-      tileHeight: 32
+      key: `${map}-map`,
+      tileWidth: 32,
+      tileHeight: 64
     })
+
     const tilesetImage = tilemap.addTilesetImage(tileset, `${map}-tiles`)
-    tilemap.createLayer(layer, tilesetImage, 0, 0)
-  }
+    layers.forEach(layer => {
+      if (layer === ground) {
+        this.groundLayer = tilemap.createLayer(layer, tilesetImage, 0, -8)
+      } else {
+        tilemap.createLayer(layer, tilesetImage, 0, -8)
+      }
+    })
 
-  addPlayer(sprite: string): void {
-    const { playerCharacter } = this.currentMap.config
-    const {
-      initPos: { x: sqrX, y: sqrY }
-    } = playerCharacter
-    const [xIso, yIso] = this.sqrToIso(sqrX, sqrY)
-
-    const player = new Player(
-      this,
-      'knight',
-      xIso,
-      yIso,
-      'walk',
-      'topright',
-      7 * this.gridSize + this.gridSize / 2
-    ).setOrigin(0, 0)
-    this.player = this.add.existing(player).setScale(0.25)
+    return tilemap
   }
 
   initCamera(): void {
-    const cursors = this.input.keyboard.createCursorKeys()
-
     this.cameras.main.setZoom(1.5)
-    this.cameras.main.setBounds(-400, 0, 800, 0)
-    this.cameras.main.centerOn(32, 0)
-
-    const controlConfig = {
-      camera: this.cameras.main,
-      left: cursors.left,
-      right: cursors.right,
-      up: cursors.up,
-      down: cursors.down,
-      acceleration: 0.04,
-      drag: 0.0005,
-      maxSpeed: 0.7
-    }
-
-    this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(
-      controlConfig
-    )
+    this.cameras.main.startFollow(this.player, true)
+    this.cameras.main.setFollowOffset(-this.player.width, -this.player.height)
   }
 
-  renderGrid(): void {
-    this.add
-      .grid(0, 0, 800, 600, 256, 256)
-      .setAltFillStyle()
-      .setOutlineStyle(0x000000)
-      .setOrigin(0, 0)
+  initMouseEvents(): void {
+    this.input.on(
+      Phaser.Input.Events.POINTER_UP,
+      (pointer: Phaser.Input.Pointer) => {
+        const { worldX, worldY } = pointer
+        const target = this.groundLayer.worldToTileXY(worldX, worldY)
 
+        const x = Math.round(target.x)
+        const y = Math.round(target.y)
+        this.targetPos = `${x},${y}`
+        this.gridEngine.moveTo(this.player.getId(), { x, y })
+        const [xx, yy] = toIso(x * 32, y * 32)
+
+        if (this.groundLayer.hasTileAtWorldXY(worldX, worldY + 12)) {
+          this.pin = this.add.ellipse(xx, yy - 4, 16, 8, 0x6666ff, 0.5)
+          this.tweens.add({
+            targets: this.pin,
+            scaleX: 0.6,
+            scaleY: 0.6,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut',
+            delay: 1
+          })
+        }
+      }
+    )
+
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.input.off(Phaser.Input.Events.POINTER_UP)
+      this.input.off(Phaser.Input.Events.GAMEOBJECT_POINTER_MOVE)
+    })
   }
 }

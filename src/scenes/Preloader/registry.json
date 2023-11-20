@@ -1,0 +1,26 @@
+{
+  "maps": {
+    "village": {
+      "map": "/game-assets/maps/village/map.json",
+      "tileset": "/game-assets/maps/village/tileset.png",
+      "config": "/game-assets/maps/village/config.json"
+    }
+  },
+  "characters": {
+    "knight": {
+      "atlas": "/game-assets/characters/knight/atlas.json",
+      "texture": "/game-assets/characters/knight/texture.png",
+      "config": "/game-assets/characters/knight/config.json"
+    },
+    "skeleton": {
+      "atlas": "/game-assets/characters/adventurer/atlas.json",
+      "texture": "/game-assets/characters/adventurer/texture.png",
+      "config": "/game-assets/characters/adventurer/config.json"
+    },
+    "adventurer": {
+      "atlas": "/game-assets/characters/adventurer/atlas.json",
+      "texture": "/game-assets/characters/adventurer/texture.png",
+      "config": "/game-assets/characters/adventurer/config.json"
+    }
+  }
+}
