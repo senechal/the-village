@@ -1,3 +1,3 @@
-export { createMonsterAnims } from './MonsterAnim'
-export { createPlayerAnims } from './PlayerAnim'
-export { createAnims } from './GenericAnims'
+export { createMonsterAnims } from './monsterAnim'
+export { createPlayerAnims } from './playerAnim'
+export { createDefaultAnims, createDefaultAnimsv2 } from './defaultAnims'

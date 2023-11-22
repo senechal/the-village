@@ -1,0 +1,5 @@
+export const SHUTDOWN = 'shutdown'
+export const DESTROY = 'destroy'
+export const TEXT_DIALOG = 'text-dialog'
+export const OPEN_DIALOG = 'open-dialog'
+export const CLOSE_DIALOG = 'close-dialog'

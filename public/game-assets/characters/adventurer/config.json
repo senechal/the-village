@@ -2,5 +2,11 @@
   "origin": [0.5, 1],
   "offset": [32, 64],
   "speed": 2,
-  "random": true
+  "random": true,
+  "anims": [
+    {
+      "type": "walk",
+      "size": 8
+    }
+  ]
 }

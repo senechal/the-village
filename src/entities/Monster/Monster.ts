@@ -1,10 +1,10 @@
-import type Phaser from 'phaser'
+import { type Game } from '../../scenes/Game'
 import { Character } from '../Character'
 
 export class Monster extends Character {
   private readonly ramdomDelay: number
   constructor(
-    scene: Phaser.Scene,
+    scene: Game,
     x: number,
     y: number,
     texture: string,
