@@ -1,0 +1,29 @@
+{
+  "origin": [0.5, 1],
+  "offset": [32, 64],
+  "speed": 2,
+  "random": true,
+  "anims": [
+    {
+      "type": "idle",
+      "size": 4,
+      "frameRate": 5
+    },
+    {
+      "type": "walk",
+      "size": 8
+    },
+    {
+      "type": "action",
+      "size": 8
+    },
+    {
+      "type": "agree",
+      "size": 4
+    },
+    {
+      "type": "disagree",
+      "size": 8
+    }
+  ]
+}

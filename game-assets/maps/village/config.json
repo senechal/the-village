@@ -1,0 +1,30 @@
+{
+  "id": "village",
+  "tileset": "grass",
+  "layers": ["field"],
+  "groundLayer": "field",
+  "playerCharacter": {
+    "id": "adventurer",
+    "initPos": {
+      "x": 5,
+      "y": 5
+    }
+  },
+  "npcs": [
+    {
+      "id": "builder",
+      "name": "Builder",
+      "side": "right",
+      "initPos": {
+        "x": 3,
+        "y": 3
+      },
+      "dialogs": [
+        "Lorem ipsum dolor sit amet, consectetur {adipiscing elit}, sed do eiusmod tempor incididunt ut {labore} et dolore magna aliqua. Ut enim ad minim {veniam}, quis nostrud exercitation ullamco.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in {reprehenderit} in voluptate velit esse."
+      ]
+    }
+  ],
+  "monsters": [],
+  "animals": []
+}
