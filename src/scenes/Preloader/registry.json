@@ -1,27 +1,27 @@
 {
   "maps": {
     "village": {
-      "map": "/game-assets/maps/village/map.json",
-      "tileset": "/game-assets/maps/village/tileset.png",
-      "config": "/game-assets/maps/village/config.json"
+      "map": "../game-assets/maps/village/map.json",
+      "tileset": "../game-assets/maps/village/tileset.png",
+      "config": "../game-assets/maps/village/config.json"
     }
   },
   "characters": {
     "adventurer": {
-      "atlas": "/game-assets/characters/adventurer/atlas.json",
-      "texture": "/game-assets/characters/adventurer/texture.png",
-      "config": "/game-assets/characters/adventurer/config.json"
+      "atlas": "../game-assets/characters/adventurer/atlas.json",
+      "texture": "../game-assets/characters/adventurer/texture.png",
+      "config": "../game-assets/characters/adventurer/config.json"
     },
     "builder": {
-      "atlas": "/game-assets/characters/builder/atlas.json",
-      "texture": "/game-assets/characters/builder/texture.png",
-      "config": "/game-assets/characters/builder/config.json"
+      "atlas": "../game-assets/characters/builder/atlas.json",
+      "texture": "../game-assets/characters/builder/texture.png",
+      "config": "../game-assets/characters/builder/config.json"
     }
   },
   "graphics": [
     {
       "name": "frame",
-      "src": "/game-assets/graphics/modal-frame.png",
+      "src": "../game-assets/graphics/modal-frame.png",
       "type": "image"
     }
   ]
