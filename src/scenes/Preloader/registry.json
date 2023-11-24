@@ -13,14 +13,14 @@
       "config": "game-assets/characters/adventurer/config.json"
     },
     "builder": {
-      "atlas": "../game-assets/characters/builder/atlas.json",
-      "texture": "../game-assets/characters/builder/texture.png",
-      "config": "../game-assets/characters/builder/config.json"
+      "atlas": "game-assets/characters/builder/atlas.json",
+      "texture": "game-assets/characters/builder/texture.png",
+      "config": "game-assets/characters/builder/config.json"
     },
     "merchant": {
-      "atlas": "../game-assets/characters/builder/atlas.json",
-      "texture": "../game-assets/characters/builder/texture.png",
-      "config": "../game-assets/characters/builder/config.json"
+      "atlas": "game-assets/characters/builder/atlas.json",
+      "texture": "game-assets/characters/builder/texture.png",
+      "config": "game-assets/characters/builder/config.json"
     }
   },
   "graphics": [
@@ -31,7 +31,7 @@
     },
     {
       "name": "dialog-extras",
-      "src": "../game-assets/graphics/dialog-extras.png",
+      "src": "game-assets/graphics/dialog-extras.png",
       "type": "spritesheet",
       "args": {
         "frameWidth": 32,
@@ -40,7 +40,7 @@
     },
     {
       "name": "items",
-      "src": "../game-assets/graphics/items.png",
+      "src": "game-assets/graphics/items.png",
       "type": "spritesheet",
       "args": {
         "frameWidth": 32,
