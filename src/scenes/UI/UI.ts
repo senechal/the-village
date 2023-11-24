@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { gameEvents, TEXT_DIALOG } from '../../Utils/EventEmitter'
+import * as EventEmitter from '../../Utils/EventEmitter'
 
 export class UI extends Phaser.Scene {
   constructor() {
@@ -9,9 +9,17 @@ export class UI extends Phaser.Scene {
   create(): void {
     this.modal.create({}, this)
 
-    gameEvents.on(TEXT_DIALOG, (dialogs: string[]) => {
-      console.log(dialogs)
-      this.modal.showDialog(dialogs[0])
+    EventEmitter.gameEvents.on(EventEmitter.TEXT_DIALOG, (dialogs: string[]) => {
+      this.modal.showDialog(dialogs)
     })
+    EventEmitter.gameEvents.on(EventEmitter.INVENTORY, (items: string[]) => {
+      this.modal.showInventory(items)
+    })
+    EventEmitter.gameEvents.on(
+      EventEmitter.SHOP,
+      (playerItems: ItemConfig[], shopItems: ItemConfig[]) => {
+        this.modal.showShop(playerItems, shopItems)
+      }
+    )
   }
 }

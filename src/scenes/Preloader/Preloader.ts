@@ -26,8 +26,8 @@ export class Preloader extends Phaser.Scene {
       this.load.atlas(key, value.texture, value.atlas)
       this.load.json(`${key}-char-config`, value.config)
     }
-    for (const { name, src, type } of graphics) {
-      this.load?.[type](name, src)
+    for (const { name, src, type, args } of graphics) {
+      this.load?.[type](name, src, args)
     }
   }
 

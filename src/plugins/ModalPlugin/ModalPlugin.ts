@@ -2,11 +2,13 @@
 import Phaser from 'phaser'
 import * as EventEmitter from '../../Utils/EventEmitter'
 import { Dialog } from './Dialog'
+import { Shop } from './Shop'
 
 export class ModalPlugin extends Phaser.Plugins.BasePlugin {
   scene: Phaser.Scene
   private systems: Phaser.Scenes.Systems
   private dialog: Dialog
+  private shop: Shop
 
   create(config: any, scene: Phaser.Scene): Phaser.Plugins.BasePlugin {
     this.scene = scene
@@ -15,9 +17,10 @@ export class ModalPlugin extends Phaser.Plugins.BasePlugin {
       this.systems.events.once('boot', this.boot, this)
     }
 
-    const { dialog } = config
+    const { dialog, inventory } = config
 
     this.dialog = new Dialog(this, dialog)
+    this.shop = new Shop(this, inventory)
     return this
   }
 
@@ -32,7 +35,15 @@ export class ModalPlugin extends Phaser.Plugins.BasePlugin {
     this.scene = undefined
   }
 
-  showDialog(text: string, config: DialogConfig): void {
+  showDialog(text: string[], config: DialogConfig): void {
     this.dialog.showDialog(text, config)
+  }
+
+  // showInventory(items?: string[]): void {
+  //   this.inventory.showInventory(items)
+  // }
+
+  showShop(playerItems: ItemConfig[], shopItems: ItemConfig[], message?: string): void {
+    this.shop.showShop(playerItems, shopItems, message)
   }
 }

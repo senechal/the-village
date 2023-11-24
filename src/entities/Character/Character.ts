@@ -39,6 +39,11 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     })
   }
 
+  setFrozen(frozen: boolean): Character {
+    this.frozen = frozen
+    return this
+  }
+
   init(): void {
     const { offset, speed } = this.config
     const [offsetX, offsetY] = offset

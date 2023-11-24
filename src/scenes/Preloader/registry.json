@@ -13,9 +13,14 @@
       "config": "game-assets/characters/adventurer/config.json"
     },
     "builder": {
-      "atlas": "game-assets/characters/builder/atlas.json",
-      "texture": "game-assets/characters/builder/texture.png",
-      "config": "game-assets/characters/builder/config.json"
+      "atlas": "../game-assets/characters/builder/atlas.json",
+      "texture": "../game-assets/characters/builder/texture.png",
+      "config": "../game-assets/characters/builder/config.json"
+    },
+    "merchant": {
+      "atlas": "../game-assets/characters/builder/atlas.json",
+      "texture": "../game-assets/characters/builder/texture.png",
+      "config": "../game-assets/characters/builder/config.json"
     }
   },
   "graphics": [
@@ -23,6 +28,53 @@
       "name": "frame",
       "src": "game-assets/graphics/modal-frame.png",
       "type": "image"
+    },
+    {
+      "name": "dialog-extras",
+      "src": "../game-assets/graphics/dialog-extras.png",
+      "type": "spritesheet",
+      "args": {
+        "frameWidth": 32,
+        "frameHeight": 32
+      }
+    },
+    {
+      "name": "items",
+      "src": "../game-assets/graphics/items.png",
+      "type": "spritesheet",
+      "args": {
+        "frameWidth": 32,
+        "frameHeight": 32
+      }
     }
-  ]
+  ],
+  "items": {
+    "spreadsheet": "",
+    "list": [
+      {
+        "name": "potion1",
+        "frame": 0,
+        "description": "",
+        "effect": {
+          "body": {
+            "type": "random",
+            "value": [1, 6],
+            "turns": 0
+          }
+        }
+      },
+      {
+        "name": "potion2",
+        "frame": 0,
+        "description": "",
+        "effect": {
+          "body": {
+            "type": "fixed",
+            "value": 4,
+            "turns": 0
+          }
+        }
+      }
+    ]
+  }
 }

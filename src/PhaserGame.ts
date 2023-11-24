@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { GridEngine } from 'grid-engine'
+
 import { ModalPlugin } from './plugins'
 import { Game, Preloader, UI } from './scenes'
 
@@ -29,7 +30,7 @@ const config: Phaser.Types.Core.GameConfig = {
     ]
   },
   width: 800,
-  height: 600,
+  height: 608,
   backgroundColor: '#000',
   physics: {
     default: 'arcade'

@@ -44,7 +44,6 @@ export class Game extends Phaser.Scene {
   private initCamera(): void {
     this.cameras.main.setZoom(1.5)
     this.cameras.main.startFollow(this.player, true)
-    this.cameras.main.setFollowOffset(-this.player.width, -this.player.height)
   }
 
   private initMap(name: string): void {
@@ -72,13 +71,14 @@ export class Game extends Phaser.Scene {
     this.npcs = this.physics.add.group({
       classType: NPC
     })
-    npcs.forEach(({ id, name, initPos, dialogs, side }) => {
+    npcs.forEach(({ id, name, initPos, dialogs, side, shop }) => {
       this.createAnims(id)
       this.npcs
         .get(initPos.x, initPos.y, id)
         .setAnim('idle', side)
         .setCharcterName(name)
         .setDialogs(dialogs)
+        .setShop(shop)
     })
   }
 
@@ -99,6 +99,10 @@ export class Game extends Phaser.Scene {
     createDefaultAnimsv2(this.anims, character, anims)
   }
 
+  getplayer(): Character {
+    return this.player
+  }
+
   getPlayerId(): string {
     return this.player.getId()
   }
@@ -113,7 +117,7 @@ export class Game extends Phaser.Scene {
   }
 
   create(): void {
-    this.input.setDefaultCursor('pointer')
+    // this.input.setDefaultCursor('pointer')
     this.initMap('village')
     this.initCamera()
   }
