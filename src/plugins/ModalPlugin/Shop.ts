@@ -57,6 +57,7 @@ export class Shop extends Dialog {
 
   private clickedTime: number = 0
   private dragOriginalPosition: { x: number; y: number }
+  private dropZone: Phaser.GameObjects.Zone
 
   constructor(plugin: ModalPlugin, config: DialogConfig) {
     super(plugin, config)
@@ -113,7 +114,8 @@ export class Shop extends Dialog {
       0.3
     )
     this.inventoryGrid.setOrigin(0, 0)
-    this.plugin.scene.add
+    if (this.dropZone) this.dropZone.destroy()
+    this.dropZone = this.plugin.scene.add
       .zone(
         this.inventoryPos.x,
         this.inventoryPos.y,
@@ -248,6 +250,7 @@ export class Shop extends Dialog {
   private closeShop(): void {
     if (this.closeButton) this.closeButton.destroy()
     if (this.inventory) this.inventory.destroy()
+    if (this.dropZone) this.dropZone.destroy()
     if (this.shop) this.shop.destroy()
     if (this.description) this.description.destroy()
     if (this.descriptionText) this.descriptionText.destroy()
