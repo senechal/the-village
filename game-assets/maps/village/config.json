@@ -20,8 +20,35 @@
         "y": 3
       },
       "dialogs": [
-        "Lorem ipsum dolor sit amet, consectetur {adipiscing elit}, sed do eiusmod tempor incididunt ut {labore} et dolore magna aliqua. Ut enim ad minim {veniam}, quis nostrud exercitation ullamco.",
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in {reprehenderit} in voluptate velit esse."
+        "Lorem ipsum dolor sit amet, consectetur *adipiscing elit*, sed do eiusmod tempor incididunt ut *labore* et dolore magna aliqua. Ut enim ad minim *veniam*, quis nostrud exercitation ullamco.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in *reprehenderit* in voluptate velit esse."
+      ]
+    },
+    {
+      "id": "merchant",
+      "name": "Merchant",
+      "side": "right",
+      "initPos": {
+        "x": 4,
+        "y": 5
+      },
+      "shop": [
+        {
+          "id": "hp-potion",
+          "name": "Potion of Healing",
+          "description": "You can drink this healing potion at any time, restoring 1 - 6 Body Points. ",
+          "spritesheet": "items",
+          "frame": 144,
+          "buy": "200"
+        },
+        {
+          "id": "2x-attack",
+          "name": "Heroic Brew",
+          "description": "If you drink its contents before you attack, you can make two attacks instead of one.",
+          "spritesheet": "items",
+          "frame": 145,
+          "buy": "500"
+        }
       ]
     }
   ],

@@ -1,6 +1,7 @@
 {
   "origin": [0.5, 1],
   "offset": [32, 64],
+  "hitArea": [16, 22, 32, 44],
   "speed": 2,
   "random": true,
   "anims": [
