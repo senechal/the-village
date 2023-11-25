@@ -17,6 +17,7 @@
   "dependencies": {
     "bitecs": "^0.3.40",
     "grid-engine": "https://github.com/senechal/grid-engine",
+    "lockr": "^0.9.0-beta.2",
     "lodash-es": "^4.17.21",
     "phaser": "^3.70.0",
     "phaser3-rex-plugins": "^1.60.7",

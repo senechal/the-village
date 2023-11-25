@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/member-delimiter-style */
 import Phaser from 'phaser'
 import { type GridEngineConfig } from 'grid-engine'
+import * as lockr from 'lockr'
 import { createDefaultAnims, createDefaultAnimsv2 } from '../../anims'
 import { Monster } from '../../entities/Monster'
 import { Player } from '../../entities/Player'
 import { NPC } from '../../entities/NPC'
 import { type Character } from '../../entities/Character'
+import { GAME_LOCAL_STORAGE } from '../typedef'
 
 export class Game extends Phaser.Scene {
   private player: Character
@@ -15,6 +17,18 @@ export class Game extends Phaser.Scene {
 
   constructor() {
     super('game')
+  }
+
+  init(): void {
+    window.addEventListener('beforeunload', e => {
+      this.shutdown()
+    })
+  }
+
+  shutdown(): void {
+    console.log('here')
+    const { x, y } = this.gridEngine.getPosition(this.getPlayerId())
+    lockr.set(GAME_LOCAL_STORAGE, { x, y })
   }
 
   private renderMap(
@@ -63,8 +77,9 @@ export class Game extends Phaser.Scene {
   }
 
   private initPlayer({ id, initPos }: PlayerCharacterConfig): void {
+    const pos = lockr.get(GAME_LOCAL_STORAGE)
     createDefaultAnims(this.anims, id) // TODO: change texture and atlas to use v2
-    this.player = new Player(this, initPos.x, initPos.y, id)
+    this.player = new Player(this, pos?.x || initPos.x, pos?.y || initPos.y, id)
   }
 
   private initNpcs(npcs: CharactersConfig[]): void {

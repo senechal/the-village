@@ -1,11 +1,14 @@
 import Phaser from 'phaser'
 import { merge } from 'lodash-es'
+import * as lockr from 'lockr'
 import * as EventEmitter from '../../Utils/EventEmitter'
+import { UI_LOCAL_STORAGE } from '../typedef'
 
 export class UI extends Phaser.Scene {
-  private readonly state: PlayerState
+  private state: PlayerState
   constructor() {
     super('UI')
+    const localData = lockr.get(UI_LOCAL_STORAGE) ?? {}
     this.state = {
       body: 8,
       mind: 2,
@@ -15,12 +18,23 @@ export class UI extends Phaser.Scene {
       inventory: {
         gold: 2500,
         items: []
-      }
+      },
+      ...localData
     }
   }
 
+  init(): void {
+    window.addEventListener('beforeunload', e => {
+      this.shutdown()
+    })
+  }
+
+  shutdown(): void {
+    lockr.set(UI_LOCAL_STORAGE, this.state)
+  }
+
   setState(newState: PlayerStateSetter): void {
-    merge(this.state, newState)
+    this.state = merge(this.state, newState)
   }
 
   create(): void {
