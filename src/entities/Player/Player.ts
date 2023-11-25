@@ -22,15 +22,19 @@ export class Player extends Character {
 
   init(): void {
     super.init()
-  }
-
-  eventListeners(): void {
-    super.eventListeners()
-    this.pin = this.scene.add.ellipse(0, 0, 16, 8, 0x000000, 0.5)
+    this.pin = this.scene.add.ellipse(0, 0, 16, 8, 0x000000, 0.5).setAlpha(0)
     this.scene.tweens.add({
       targets: this.pin,
       ...pinTweenConfig
     })
+  }
+
+  getSpeed(): number {
+    return this.config.speed
+  }
+
+  eventListeners(): void {
+    super.eventListeners()
 
     this.scene.input.on(
       Phaser.Input.Events.POINTER_UP,
@@ -45,7 +49,12 @@ export class Player extends Character {
               .moveTo(this.scene.getPlayerId(), target)
               .subscribe(({ result }: { result: string }) => {
                 if (result === 'SUCCESS') {
-                  this.scene.time.delayedCall(500, () => this.pin.setAlpha(0), [], this)
+                  this.scene.time.delayedCall(
+                    1000 / this.config.speed,
+                    () => this.pin.setAlpha(0),
+                    [],
+                    this
+                  )
                 } else {
                   this.pin.setAlpha(0)
                 }
@@ -53,8 +62,6 @@ export class Player extends Character {
 
             this.pin.setAlpha(0.5)
             this.pin.setPosition(...toIso(target.x * 32, target.y * 32, 0, -4))
-          } else {
-            // TODO: look at this direction
           }
         }
       }

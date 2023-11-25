@@ -1,7 +1,7 @@
 {
   "origin": [0.5, 1],
   "offset": [32, 64],
-  "speed": 2,
+  "speed": 4,
   "random": true,
   "anims": [
     {

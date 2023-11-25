@@ -37,6 +37,7 @@ export class NPC extends Character {
     this.on(Phaser.Input.Events.POINTER_UP, () => {
       if (!this.frozen) {
         this.scene.gridEngine.stopMovement(this.scene.getPlayerId())
+        const speed = this.scene.getplayer().getSpeed()
         const pos = this.scene.gridEngine.getPosition(this.id)
         this.scene.gridEngine
           .moveTo(this.scene.getPlayerId(), pos, {
@@ -44,13 +45,13 @@ export class NPC extends Character {
           })
           .subscribe(({ result }: { result: string }) => {
             if (result === 'SUCCESS') {
-              this.scene.time.delayedCall(500, this.lookAt, [], this)
+              this.scene.time.delayedCall(1000 / speed, this.lookAt, [], this)
               if (this.quest) {
-                this.scene.time.delayedCall(500, this.startQuest, [], this)
+                this.scene.time.delayedCall(1000 / speed, this.startQuest, [], this)
               } else if (this.shop) {
-                this.scene.time.delayedCall(500, this.openShop, [], this)
+                this.scene.time.delayedCall(1000 / speed, this.openShop, [], this)
               } else if (this.dialogs) {
-                this.scene.time.delayedCall(500, this.talk, [], this)
+                this.scene.time.delayedCall(1000 / speed, this.talk, [], this)
               }
             }
           })

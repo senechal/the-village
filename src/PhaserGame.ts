@@ -8,7 +8,7 @@ const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.WEBGL,
   parent: 'phaser-container',
   pixelArt: true,
-  // backgroundColor: '#f1f1f1',
+  backgroundColor: '#f1f1f1',
   // scale: {
   //   mode: Phaser.Scale.ScaleModes.RESIZE,
   //   width: window.innerWidth,
@@ -31,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   width: 800,
   height: 608,
-  backgroundColor: '#000',
+  // backgroundColor: '#000',
   physics: {
     default: 'arcade'
   },

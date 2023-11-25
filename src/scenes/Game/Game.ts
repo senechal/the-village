@@ -10,7 +10,7 @@ import { type Character } from '../../entities/Character'
 import { GAME_LOCAL_STORAGE } from '../typedef'
 
 export class Game extends Phaser.Scene {
-  private player: Character
+  private player: Player
   private groundLayer: Phaser.Tilemaps.TilemapLayer
   private monsters: Phaser.Physics.Arcade.Group
   private npcs: Phaser.Physics.Arcade.Group
@@ -114,7 +114,7 @@ export class Game extends Phaser.Scene {
     createDefaultAnimsv2(this.anims, character, anims)
   }
 
-  getplayer(): Character {
+  getplayer(): Player {
     return this.player
   }
 
