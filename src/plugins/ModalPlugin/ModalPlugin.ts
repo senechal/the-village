@@ -43,7 +43,12 @@ export class ModalPlugin extends Phaser.Plugins.BasePlugin {
   //   this.inventory.showInventory(items)
   // }
 
-  showShop(playerItems: ItemConfig[], shopItems: ItemConfig[], message?: string): void {
-    this.shop.showShop(playerItems, shopItems, message)
+  showShop(
+    playerItems: ItemConfig[],
+    shopItems: ItemConfig[],
+    gold: number,
+    message?: string
+  ): void {
+    this.shop.showShop(playerItems, shopItems, gold, message)
   }
 }

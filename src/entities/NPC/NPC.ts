@@ -89,7 +89,7 @@ export class NPC extends Character {
   }
 
   openShop(): void {
-    EventEmitter.gameEvents.emit(EventEmitter.SHOP, [], this.shop)
+    EventEmitter.gameEvents.emit(EventEmitter.SHOP, this.shop)
   }
 
   startQuest(): void {

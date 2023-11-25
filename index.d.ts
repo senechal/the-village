@@ -1,11 +1,5 @@
 declare module '*.png'
 
-declare namespace BBCodeText {
-  interface TextStyle extends Text.TextStyle {
-    delimiters?: string | string[]
-  }
-}
-
 declare namespace Phaser {
   interface Scene {
     gridEngine: IGridEngine
@@ -78,6 +72,7 @@ interface Directions {
 }
 
 interface ItemConfig {
+  id: string
   name: string
   description: string
   spritesheet: string
@@ -85,4 +80,40 @@ interface ItemConfig {
   buy?: number
   sell?: number
   quantity?: number
+}
+
+interface PlayerState {
+  body: number
+  mind: number
+  attack: number
+  defence: number
+  equipment: {
+    head?: string
+    body?: string
+    rightHand?: string
+    leftHand?: string
+    legs?: string
+  }
+  inventory: {
+    gold: number
+    items: ItemConfig[]
+  }
+}
+
+interface PlayerStateSetter {
+  body?: number
+  mind?: number
+  attack?: number
+  defence?: number
+  equipment?: {
+    head?: string
+    body?: string
+    rightHand?: string
+    leftHand?: string
+    legs?: string
+  }
+  inventory?: {
+    gold?: number
+    items?: ItemConfig[]
+  }
 }

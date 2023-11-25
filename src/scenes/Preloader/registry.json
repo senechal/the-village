@@ -46,35 +46,11 @@
         "frameWidth": 32,
         "frameHeight": 32
       }
+    },
+    {
+      "name": "dropdown",
+      "src": "game-assets/forms/select.html",
+      "type": "html"
     }
-  ],
-  "items": {
-    "spreadsheet": "",
-    "list": [
-      {
-        "name": "potion1",
-        "frame": 0,
-        "description": "",
-        "effect": {
-          "body": {
-            "type": "random",
-            "value": [1, 6],
-            "turns": 0
-          }
-        }
-      },
-      {
-        "name": "potion2",
-        "frame": 0,
-        "description": "",
-        "effect": {
-          "body": {
-            "type": "fixed",
-            "value": 4,
-            "turns": 0
-          }
-        }
-      }
-    ]
-  }
+  ]
 }

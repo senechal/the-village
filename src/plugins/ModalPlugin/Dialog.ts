@@ -18,10 +18,14 @@ export class Dialog extends BaseDialog {
   constructor(plugin: ModalPlugin, config: DialogConfig) {
     super(plugin, config)
     this.open = false
-    this.clickEvent()
+    this.eventListeners()
   }
 
-  clickEvent(): void {
+  getText(): Phaser.GameObjects.Text {
+    return this.text
+  }
+
+  eventListeners(): void {
     this.plugin.scene.input.on(Phaser.Input.Events.POINTER_UP, () => {
       if (this.open) {
         if (this.animating) {
@@ -121,7 +125,7 @@ export class Dialog extends BaseDialog {
     if (this.next) this.next.destroy()
     this.dialogList = textList
       .reverse()
-      .map(text => ({ text, config: { ...this.config, localConfig } }))
+      .map(text => ({ text, config: { ...this.config, ...localConfig } }))
 
     const { text, config } = this.dialogList.pop()
     this.frame = this.createDialog(config)

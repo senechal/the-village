@@ -17,6 +17,7 @@
   "dependencies": {
     "bitecs": "^0.3.40",
     "grid-engine": "https://github.com/senechal/grid-engine",
+    "lodash-es": "^4.17.21",
     "phaser": "^3.70.0",
     "phaser3-rex-plugins": "^1.60.7",
     "react": "^18.2.0",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/copy-webpack-plugin": "^10.1.0",
     "@types/file-loader": "^5.0.4",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
