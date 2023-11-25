@@ -39,7 +39,8 @@
           "description": "You can drink this healing potion at any time, restoring 1 - 6 Body Points. ",
           "spritesheet": "items",
           "frame": 144,
-          "buy": "200"
+          "buy": 200,
+          "sell": 100
         },
         {
           "id": "2x-attack",
@@ -47,7 +48,8 @@
           "description": "If you drink its contents before you attack, you can make two attacks instead of one.",
           "spritesheet": "items",
           "frame": 145,
-          "buy": "500"
+          "buy": 500,
+          "sell": 250
         }
       ]
     }

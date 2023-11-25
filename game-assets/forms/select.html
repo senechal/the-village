@@ -1,0 +1,94 @@
+<style>
+    /* Dropdown */
+
+    .dropdown {
+        display: inline-block;
+        position: relative;
+    }
+
+    .dd-button {
+        display: inline-block;
+        border: 1px solid #cc613d;
+        border-radius: 4px;
+        padding: 0px 30px 0px 20px;
+        background-color: #ffb684;
+        cursor: pointer;
+        white-space: nowrap;
+        color: #cc613d;
+    }
+
+    .dd-button:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #cc613d;
+    }
+
+    .dd-button:hover {
+        font-weight: bolder;
+        background-color: rgba(204, 97, 61, 0.3);
+    }
+
+
+    .dd-input {
+        display: none;
+    }
+
+    .dd-menu {
+        position: absolute;
+        top: 100%;
+        border: 1px solid #cc613d;
+        border-radius: 4px;
+        padding: 0;
+        margin: 2px 0 0 0;
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+        background-color: #ffb684;
+        list-style-type: none;
+        font-family: monospace;
+    }
+
+    .dd-input+.dd-menu {
+        display: none;
+    }
+
+    .dd-input:checked+.dd-menu {
+        display: block;
+    }
+
+    .dd-menu li {
+        padding: 0px 20px;
+        cursor: pointer;
+        white-space: nowrap;
+        color: #cc613d;
+        font-family: monospace;
+    }
+
+    .dd-menu li:hover {
+        font-weight: bolder;
+        background-color: rgba(204, 97, 61, 0.3);
+    }
+</style>
+<label class="dropdown">
+
+    <div id="default-option" class="dd-button">
+        1
+    </div>
+
+    <input type="checkbox" class="dd-input" id="test">
+
+    <ul class="dd-menu">
+        <li data-option="true">1</li>
+        <li data-option="true">2</li>
+        <li data-option="true">3</li>
+        <li data-option="true">4</li>
+        <li data-option="true">5</li>
+        <li data-option="true">10</li>
+    </ul>
+
+</label>
