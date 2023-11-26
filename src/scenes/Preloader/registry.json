@@ -57,8 +57,8 @@
       "src": "game-assets/graphics/body-mind.png",
       "type": "spritesheet",
       "args": {
-        "frameWidth": 16,
-        "frameHeight": 24
+        "frameWidth": 32,
+        "frameHeight": 32
       }
     },
     {

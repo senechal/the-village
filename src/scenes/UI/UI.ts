@@ -6,13 +6,13 @@ import { UI_LOCAL_STORAGE } from '../typedef'
 
 export class UI extends Phaser.Scene {
   private state: PlayerState
-  private bodyCounter: Phaser.GameObjects.Group
-  private mindConter: Phaser.GameObjects.Group
+  private bodyCounter: Phaser.GameObjects.Text
+  private bodyBanner: Phaser.GameObjects.Group
+  private mindCounter: Phaser.GameObjects.Text
+  private mindBanner: Phaser.GameObjects.Group
   private inventoryButton: any
   private equipmentButton: any
   private battleIndicator: any
-
-  private readonly mindCouter: any
 
   constructor() {
     super('UI')
@@ -87,48 +87,79 @@ export class UI extends Phaser.Scene {
 
   create(): void {
     this.modal.create({}, this)
-    this.updateBodyCount()
+    this.createBodyBanner()
+    this.createMindBanner()
     this.updateMindCount()
     this.createActionBar()
     this.eventListeners()
   }
 
-  private updateBodyCount(): void {
-    if (this.bodyCounter) {
-      this.bodyCounter.getChildren().forEach(child => {
+  private createBodyBanner(): void {
+    if (this.bodyBanner) {
+      this.bodyBanner.getChildren().forEach(child => {
         child.destroy()
       })
-      this.bodyCounter.destroy()
+      this.bodyBanner.destroy()
     }
-    this.bodyCounter = this.add.group()
-    this.bodyCounter.createMultiple({ key: 'body-mind', frame: 0, frameQuantity: this.state.body })
-    Phaser.Actions.GridAlign(this.bodyCounter.getChildren(), {
-      width: this.state.body,
+    if (this.bodyCounter) this.bodyCounter.destroy()
+    this.bodyBanner = this.add.group()
+    this.bodyBanner.createMultiple({
+      key: 'body-mind',
+      frame: [0, 2],
+      frameQuantity: 1
+    })
+    Phaser.Actions.GridAlign(this.bodyBanner.getChildren(), {
+      width: 2,
       height: 1,
-      cellWidth: 16,
-      cellHeight: 24,
+      cellWidth: 32,
+      cellHeight: 32,
       x: 32,
       y: 16
     })
+    this.bodyCounter = this.add
+      .text(80, 32, `${this.state.body}`, {
+        color: '#cc613d',
+        font: 'bold 20px monospace'
+      })
+      .setOrigin(0.5, 0.5)
+  }
+
+  private createMindBanner(): void {
+    if (this.mindBanner) {
+      this.mindBanner.getChildren().forEach(child => {
+        child.destroy()
+      })
+      this.bodyBanner.destroy()
+    }
+    if (this.mindCounter) this.mindCounter.destroy()
+    this.mindBanner = this.add.group()
+    this.mindBanner.createMultiple({
+      key: 'body-mind',
+      frame: [1, 2],
+      frameQuantity: 1
+    })
+    Phaser.Actions.GridAlign(this.mindBanner.getChildren(), {
+      width: 2,
+      height: 1,
+      cellWidth: 32,
+      cellHeight: 32,
+      x: 100,
+      y: 16
+    })
+    this.mindCounter = this.add
+      .text(146, 32, `${this.state.mind}`, {
+        color: '#cc613d',
+        font: 'bold 20px monospace'
+      })
+      .setOrigin(0.5, 0.5)
+  }
+
+  private updateBodyCount(): void {
+    this.bodyCounter.setText(`${this.state.body}`)
   }
 
   private updateMindCount(): void {
-    if (this.mindConter) {
-      this.mindConter.getChildren().forEach(child => {
-        child.destroy()
-      })
-      this.mindConter.destroy()
-    }
-    this.mindConter = this.add.group()
-    this.mindConter.createMultiple({ key: 'body-mind', frame: 1, frameQuantity: this.state.mind })
-    Phaser.Actions.GridAlign(this.mindConter.getChildren(), {
-      width: this.state.mind,
-      height: 1,
-      cellWidth: 16,
-      cellHeight: 24,
-      x: 32,
-      y: 16 + 24
-    })
+    this.mindCounter.setText(`${this.state.mind}`)
   }
 
   private createActionBar(): void {
