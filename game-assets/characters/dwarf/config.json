@@ -1,0 +1,41 @@
+{
+  "origin": [0.5, 1],
+  "offset": [64, 64],
+  "speed": 4,
+  "random": true,
+  "pin": "pin",
+  "anims": [
+    {
+      "type": "idle",
+      "size": 5
+    },
+    {
+      "type": "walk",
+      "size": 8
+    },
+    {
+      "type": "attack1",
+      "size": 7
+    },
+    {
+      "type": "attack2",
+      "size": 6
+    },
+    {
+      "type": "attack3",
+      "size": 2
+    },
+    {
+      "type": "jump",
+      "size": 5
+    },
+    {
+      "type": "damage",
+      "size": 4
+    },
+    {
+      "type": "die",
+      "size": 7
+    }
+  ]
+}
