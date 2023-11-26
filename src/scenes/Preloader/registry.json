@@ -7,10 +7,10 @@
     }
   },
   "characters": {
-    "adventurer": {
-      "atlas": "game-assets/characters/adventurer/atlas.json",
-      "texture": "game-assets/characters/adventurer/texture.png",
-      "config": "game-assets/characters/adventurer/config.json"
+    "dwarf": {
+      "atlas": "game-assets/characters/dwarf/atlas.json",
+      "texture": "game-assets/characters/dwarf/texture.png",
+      "config": "game-assets/characters/dwarf/config.json"
     },
     "builder": {
       "atlas": "game-assets/characters/builder/atlas.json",
@@ -30,6 +30,11 @@
       "type": "image"
     },
     {
+      "name": "pin",
+      "src": "game-assets/graphics/pin.png",
+      "type": "image"
+    },
+    {
       "name": "dialog-extras",
       "src": "game-assets/graphics/dialog-extras.png",
       "type": "spritesheet",
@@ -45,6 +50,24 @@
       "args": {
         "frameWidth": 32,
         "frameHeight": 32
+      }
+    },
+    {
+      "name": "body-mind",
+      "src": "game-assets/graphics/body-mind.png",
+      "type": "spritesheet",
+      "args": {
+        "frameWidth": 16,
+        "frameHeight": 24
+      }
+    },
+    {
+      "name": "action-buttons",
+      "src": "game-assets/graphics/action-buttons.png",
+      "type": "spritesheet",
+      "args": {
+        "frameWidth": 64,
+        "frameHeight": 64
       }
     },
     {

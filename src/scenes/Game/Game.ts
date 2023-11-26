@@ -2,11 +2,10 @@
 import Phaser from 'phaser'
 import { type GridEngineConfig } from 'grid-engine'
 import * as lockr from 'lockr'
-import { createDefaultAnims, createDefaultAnimsv2 } from '../../anims'
+import { createDefaultAnims } from '../../anims'
 import { Monster } from '../../entities/Monster'
 import { Player } from '../../entities/Player'
 import { NPC } from '../../entities/NPC'
-import { type Character } from '../../entities/Character'
 import { GAME_LOCAL_STORAGE } from '../typedef'
 
 export class Game extends Phaser.Scene {
@@ -78,7 +77,7 @@ export class Game extends Phaser.Scene {
 
   private initPlayer({ id, initPos }: PlayerCharacterConfig): void {
     const pos = lockr.get(GAME_LOCAL_STORAGE)
-    createDefaultAnims(this.anims, id) // TODO: change texture and atlas to use v2
+    this.createAnims(id)
     this.player = new Player(this, pos?.x || initPos.x, pos?.y || initPos.y, id)
   }
 
@@ -86,11 +85,11 @@ export class Game extends Phaser.Scene {
     this.npcs = this.physics.add.group({
       classType: NPC
     })
-    npcs.forEach(({ id, name, initPos, dialogs, side, shop }) => {
+    npcs.forEach(({ id, name, anim, initPos, dialogs, side, shop }) => {
       this.createAnims(id)
       this.npcs
         .get(initPos.x, initPos.y, id)
-        .setAnim('idle', side)
+        .setInitialAnim(anim ?? 'idle', side)
         .setCharcterName(name)
         .setDialogs(dialogs)
         .setShop(shop)
@@ -111,7 +110,7 @@ export class Game extends Phaser.Scene {
 
   private createAnims(character: string): void {
     const { anims } = this.cache.json.get(`${character}-char-config`)
-    createDefaultAnimsv2(this.anims, character, anims)
+    createDefaultAnims(this.anims, character, anims)
   }
 
   getplayer(): Player {

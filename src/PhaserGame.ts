@@ -34,6 +34,9 @@ const config: Phaser.Types.Core.GameConfig = {
   // backgroundColor: '#000',
   physics: {
     default: 'arcade'
+    // arcade: {
+    //   debug: true
+    // }
   },
   dom: {
     createContainer: true

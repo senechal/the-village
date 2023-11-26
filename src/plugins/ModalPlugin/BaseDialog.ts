@@ -52,11 +52,13 @@ export class BaseDialog {
   }
 
   createNextIcon(config: DialogConfig): Phaser.GameObjects.Sprite {
-    return this.plugin.scene.add.sprite(
-      config.x + config?.width - config?.padding,
-      config.y + config?.height - config?.padding,
-      'dialog-extras',
-      0
-    )
+    return this.plugin.scene.add
+      .sprite(
+        config.x + config?.width - config?.padding * 2,
+        config.y + config?.height - config?.padding,
+        'dialog-extras',
+        0
+      )
+      .setScale(2)
   }
 }

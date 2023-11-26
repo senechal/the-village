@@ -9,7 +9,6 @@ export class NPC extends Character {
 
   init(): void {
     super.init()
-    this.scene.input.enableDebug(this)
   }
 
   setDialogs(dialogs: string[]): Character {
@@ -59,6 +58,10 @@ export class NPC extends Character {
     })
     this.scene.events.on(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.off(Phaser.Input.Events.POINTER_UP)
+    })
+
+    EventEmitter.gameEvents.on(EventEmitter.CLOSE_DIALOG, () => {
+      this.setAnim()
     })
   }
 

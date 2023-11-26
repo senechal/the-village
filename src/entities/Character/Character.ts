@@ -3,8 +3,9 @@ import * as EventEmitter from '../../Utils/EventEmitter'
 
 export class Character extends Phaser.Physics.Arcade.Sprite {
   readonly id: string
+  private initialAnim: [string, string] = ['idle', 'right']
   characterName: string
-  readonly config: CharConfig
+  readonly config: CharRendeConfig
   frozen: boolean
   scene: Game
   constructor(scene: Game, x: number, y: number, texture: string, frame?: string | number) {
@@ -16,8 +17,19 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     this.init()
   }
 
-  setAnim(type: string, direction: string): Character {
+  getInitialAnim(): [string, string] {
+    return this.initialAnim
+  }
+
+  setAnim(type?: string, direction?: string): Character {
+    const [initType, initDirection] = this.initialAnim
+    this.anims.play(`${this.id}-${type ?? initType}-${direction ?? initDirection}`, true)
+    return this
+  }
+
+  setInitialAnim(type: string, direction: string): Character {
     this.anims.play(`${this.id}-${type}-${direction}`, true)
+    this.initialAnim = [type, direction]
     return this
   }
 
@@ -83,6 +95,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     })
 
     this.eventListeners()
+    // this.scene.input.enableDebug(this)
   }
 
   protected preUpdate(time: number, delta: number): void {

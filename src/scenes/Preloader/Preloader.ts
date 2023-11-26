@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import registry from './registry.json'
 
 export class Preloader extends Phaser.Scene {
+  private background: Phaser.GameObjects.Graphics
   private progressBar: Phaser.GameObjects.Graphics
   private progressBox: Phaser.GameObjects.Graphics
   private loadingText: Phaser.GameObjects.Text
@@ -38,8 +39,11 @@ export class Preloader extends Phaser.Scene {
 
   private createProgressBar(): void {
     const { width, height } = this.cameras.main
+    this.background = this.add.graphics()
     this.progressBar = this.add.graphics()
     this.progressBox = this.add.graphics()
+    this.background.fillStyle(0x000000)
+    this.background.fillRect(0, 0, 800, 608)
     this.progressBox.fillStyle(0x222222, 0.8)
     this.progressBox.fillRect(width / 2 - 160, height / 2, 320, 50) // 240, 270
 
@@ -92,6 +96,7 @@ export class Preloader extends Phaser.Scene {
       this.loadingText.destroy()
       this.percentText.destroy()
       this.assetText.destroy()
+      this.background.destroy()
     })
   }
 }

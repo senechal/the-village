@@ -4,7 +4,7 @@
   "layers": ["field"],
   "groundLayer": "field",
   "playerCharacter": {
-    "id": "adventurer",
+    "id": "dwarf",
     "initPos": {
       "x": 5,
       "y": 5
@@ -15,6 +15,7 @@
       "id": "builder",
       "name": "Builder",
       "side": "right",
+      "anim": "action",
       "initPos": {
         "x": 3,
         "y": 3

@@ -35,6 +35,7 @@ interface PlayerCharacterConfig {
 interface CharactersConfig {
   id: string
   name: string
+  anim?: string
   initPos: {
     x: number
     y: number
@@ -57,13 +58,14 @@ interface AnimsConfig {
   frameRate?: number
 }
 
-interface CharConfig {
+interface CharRendeConfig {
   origin: [number, number]
   offset: [number, number]
   speed: number
   random: boolean | number
   anims: AnimsConfig[]
   hitArea?: [number, number, number, number]
+  pin?: string
 }
 
 interface Directions {
